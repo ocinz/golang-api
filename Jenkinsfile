@@ -17,7 +17,7 @@ pipeline {
             steps {
                 script {
                     // Salin file env dari temporary path ke workspace sebagai .env
-                    sh "cp ${DOCKER_ENV} .env"
+                    sh "cp ${DOCKER_ENV} ./"
                     echo ".env file copied from Jenkins credential"
                 }
                 sh 'cat .env'
