@@ -2,6 +2,7 @@ pipeline {
     agent any
 
     environment {
+        // DOCKER_ENV akan berisi path file jika credential bertipe Secret file
         DOCKER_ENV = credentials('golang-api-env')
     }
 
@@ -15,8 +16,9 @@ pipeline {
         stage('Setup .env File') {
             steps {
                 script {
-                    writeFile file: '.env', text: DOCKER_ENV
-                    echo ".env file created!"
+                    // Salin file env dari temporary path ke workspace sebagai .env
+                    sh "cp ${DOCKER_ENV} .env"
+                    echo ".env file copied from Jenkins credential"
                 }
                 sh 'cat .env'
             }
@@ -37,7 +39,6 @@ pipeline {
 
     post {
         always {
-            // Bersihkan .env file setelah eksekusi
             sh 'rm -f .env'
         }
         failure {
