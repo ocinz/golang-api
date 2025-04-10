@@ -15,7 +15,15 @@ pipeline {
                     sh 'cat "$DOCKER_ENV" > .env'
                     echo ".env file created from Jenkins credential"
                 }
-                sh 'cat .env'
+            }
+        }
+        stage('Clean Docker') {
+            steps {
+                script {
+                    echo "Membersihkan lingkungan Docker..."
+                    sh 'docker compose down || echo "Tidak ada container yang dihentikan"'
+                    sh 'docker system prune -af'
+                }
             }
         }
         stage('Docker Compose Build') {
