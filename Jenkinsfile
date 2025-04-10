@@ -12,25 +12,23 @@ pipeline {
         stage('Setup .env File') {
             steps {
                 script {
-                    sh "cp ${DOCKER_ENV} ./.env"
-                    echo ".env file copied from Jenkins credential"
+                    sh 'cat "$DOCKER_ENV" > .env'
+                    echo ".env file created from Jenkins credential"
                 }
+                sh 'cat .env'
             }
         }
-
         stage('Docker Compose Build') {
             steps {
                 sh 'docker compose --env-file .env build'
             }
         }
-
         stage('Docker Compose Up') {
             steps {
                 sh 'docker compose --env-file .env up -d'
             }
         }
     }
-
     post {
         always {
             sh 'rm -f .env'
