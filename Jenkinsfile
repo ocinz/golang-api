@@ -20,12 +20,12 @@ pipeline {
         }
         stage('Docker Compose Build') {
             steps {
-                sh 'docker compose build'
+                sh 'sudo docker compose build'
             }
         }
         stage('Docker Compose Up') {
             steps {
-                sh 'docker compose up -d'
+                sh 'sudo docker compose up -d'
             }
         }
     }
