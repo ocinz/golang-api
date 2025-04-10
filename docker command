@@ -1,1 +1,2 @@
-docker run --detach --name mariadb -p 9000:3306 --env MARIADB_USER=user --env MARIADB_PASSWORD=password --env MARIADB_DATABASE=contactsdb --env MARIADB_ROOT_PASSWORD=rootpassword  mariadb:latest
+docker compose build 
+docker compose up
