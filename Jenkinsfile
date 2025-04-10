@@ -21,8 +21,8 @@ pipeline {
             steps {
                 script {
                     echo "Membersihkan lingkungan Docker..."
-                    sh 'docker compose down || echo "Tidak ada container yang dihentikan"'
-                    sh 'docker system prune -af'
+                    sh 'sudo docker compose down || echo "Tidak ada container yang dihentikan"'
+                    sh 'sudo docker system prune -af'
                 }
             }
         }
