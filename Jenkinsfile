@@ -20,12 +20,12 @@ pipeline {
         }
         stage('Docker Compose Build') {
             steps {
-                sh 'docker compose --env-file .env build'
+                sh 'docker compose build'
             }
         }
         stage('Docker Compose Up') {
             steps {
-                sh 'docker compose --env-file .env up -d'
+                sh 'docker compose up -d'
             }
         }
     }
