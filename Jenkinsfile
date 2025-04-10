@@ -15,6 +15,7 @@ pipeline {
                      writeFile file: '.env', text: DOCKER_ENV
                     echo ".env file created!"
                 }
+                sh  'cat .env'
             }
         }
         stage('Docker Compose Build') {
