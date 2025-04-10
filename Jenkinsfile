@@ -9,7 +9,7 @@ pipeline {
                 checkout scm
             }
         }
-        stage(name: 'Check Environment') {
+        stage('Check Environment') {
             steps {
                 sh(script: 'cat ${DOCKER_ENV}')
             }
